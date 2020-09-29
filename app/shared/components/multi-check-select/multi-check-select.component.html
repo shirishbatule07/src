@@ -1,0 +1,29 @@
+<div class="multi-check-select">
+  <div>
+    <button [ngbPopover]="popper" class="dropdown-toggle btn btn-white-primary btn-sm mt-1" [autoClose]="'outside'"
+      [placement]="placement" (click)="handleParentClick($event)"
+      [disabled]="disabled">{{ displayLabel || fieldLabel }}</button>
+  </div>
+  <ng-template #popper>
+    <div class="popper">
+      <div class="search-container">
+        <span style="font-size: 20px;" class="mr-1 feather icon icon-search"></span>
+        <input type="text" placeholder="{{ displayText.enterTextToSearch }}" #searchInput
+          (input)="handleOnInput(searchInput.value)" />
+        <button class="btn pd-0 mb-0" (click)="handleClearInput(searchInput)"><span
+            class="feather icon icon-x"></span></button>
+      </div>
+      <div class="multi-check-selectall"><a class="f-11 cursor-pointer"
+          (click)="toggleAllSelect($event)">{{ isAllSelected ? displayText.deSelectAll : displayText.selectAll }}</a>
+      </div>
+      <div>
+        <ul class="options-list">
+          <li class="d-flex" *ngFor="let item of tempItem">
+            <input (change)="handleOnCheck($event, item)" [checked]="item?.checked" type="checkbox" />
+            <label class="ml-2 text-elipsis">{{ item ? item[label] : '' }}</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+</div>

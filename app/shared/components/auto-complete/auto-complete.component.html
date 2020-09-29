@@ -1,0 +1,5 @@
+<ng-select [selectOnTab]="true" #select [items]="options$ | async" [loading]="dataLoading" [bindValue]="bindValue"
+  [bindLabel]="bindLabel" [minTermLength]="0" [placeholder]="placeholder" [typeahead]="termInput$"
+  [typeToSearchText]="displayText.enterTwoOrMoreChars" [(ngModel)]="selectedOption" [ngClass]="klass" (open)="onOpen()"
+  [disabled]="disabled">
+</ng-select>

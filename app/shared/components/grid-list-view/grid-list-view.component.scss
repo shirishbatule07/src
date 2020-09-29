@@ -1,0 +1,15 @@
+.grid-list-view {
+	display: flex;
+	button {
+		padding: 5px;
+		border: none;
+		background: transparent;
+	}
+	.icon {
+		color: #888;
+	}
+	.active {
+		color: #fff;
+		background: #888;
+	}
+}

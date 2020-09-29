@@ -1,0 +1,22 @@
+<div>
+  <div [formGroup]="addressForm" novalidate>
+    <div class="row">
+      <div class="col-xl-6 col-md-6 pr-md-1 pr-xl-1">
+        <input type="text" class="form-control h-auto input-md mb-1" placeholder="Street" formControlName="street" />
+      </div>
+      <div class="col-xl-6 col-md-6">
+        <input type="text" class="form-control h-auto input-md mb-1" placeholder="Street 2" formControlName="street2" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6 col-md-6 pr-md-1 pr-xl-1 mb-1">
+        <app-auto-complete formControlName="cityId" placeholder="City, State, Country" [apiCall]="getCities"
+          [baseContext]="this">
+        </app-auto-complete>
+      </div>
+      <div class="col-xl-6 col-md-6 mb-1">
+        <input numeric class="form-control" type="text" formControlName="zip" placeholder="Zip" />
+      </div>
+    </div>
+  </div>
+</div>

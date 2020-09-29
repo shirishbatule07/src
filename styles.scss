@@ -1,0 +1,268 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~ngx-toastr/toastr";
+@import "scss/variables";
+
+/* fonts-icon */
+@import "scss/fonts/fontawesome/scss/fontawesome";
+@import "scss/fonts/feather/iconfont";
+
+@import url("scss/fonts/datta/datta-icons.css");
+/** custom font icons - datta **/
+@import "scss/general";
+//@import "scss/generic";
+@import "scss/mixins/function";
+
+/* important element */
+//@import "scss/menu/menu-lite";
+//@import "scss/widget/widget";
+
+/* basic elements */
+@import "scss/theme-elements/theme-elements";
+
+/* advance-other elements */
+//@import "scss/other/other";
+
+/* third party modules style*/
+@import "scss/plugins/plugins";
+
+//@import "scss/layout/layout";
+//@import "scss/custom";
+
+/* overriding theme */
+@import "scss/theme/custome-theme-general";
+@import "scss/theme/custome-theme-form";
+@import "scss/theme/custome-theme-nav";
+// @import "scss/theme/custome-theme-elements";
+//@import "scss/theme/custome-theme-modules";
+
+@import "scss/theme/theme";
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.icon-btn {
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+	outline: none !important;
+
+	::before {
+		content: none;
+	}
+
+	::after {
+		content: none;
+	}
+}
+
+@media (min-width: 768px) {
+	.hoverable {
+		display: none;
+	}
+
+	.table-hover {
+		tr:hover {
+			.hoverable {
+				display: block;
+			}
+		}
+	}
+}
+
+// element style overrides
+label {
+	margin-bottom: 0.25rem;
+}
+
+input[type="radio"] {
+	-webkit-appearance: none;
+	appearance: none;
+	-moz-appearance: none;
+	border: 4px solid #e0e0e0;
+	background-color: #e0e0e0;
+	border-radius: 100%;
+	padding: 5px;
+	outline: 0;
+	display: inline-flex;
+}
+
+input[type="radio"]:checked {
+	border-color: #04a9f5;
+}
+
+input[type="checkbox"] {
+	-webkit-appearance: none;
+	appearance: none;
+	-moz-appearance: none;
+	border: 2px solid #e0e0e0;
+	border-radius: 25%;
+	padding-left: 2px;
+	padding-right: 2px;
+	display: inline;
+}
+
+input[type="checkbox"]:checked {
+	background: #04a9f5;
+	border-color: #04a9f5;
+}
+
+input[type="checkbox"]:before {
+	content: "\2713";
+	visibility: hidden;
+}
+
+input[type="checkbox"]:checked:before {
+	content: "\2713";
+	color: white;
+	display: inline;
+	font-weight: bold;
+	visibility: visible;
+}
+
+// overrides
+@media (min-width: 576px) {
+	.modal-dialog {
+		max-width: 60% !important;
+	}
+}
+
+.popover {
+	border-radius: unset !important;
+
+	.popover-body {
+		padding: 0.5rem 0 !important;
+	}
+}
+
+.row {
+	margin: 0;
+}
+
+.d-contents {
+	display: contents;
+}
+
+.app-icon-bg {
+	background: linear-gradient(-135deg, #1de9b6 0%, #1dc4e9 100%);
+}
+
+.input-icon {
+	font-size: 25px;
+	align-self: center;
+	position: relative;
+	left: 2.3rem;
+	z-index: 5;
+}
+
+.ng-select .ng-select-container {
+	height: 38px !important;
+	min-height: 38px !important;
+
+	.ng-value-container {
+		padding-left: 0.75rem;
+
+		.ng-input {
+			padding-left: 0.75rem !important;
+
+			input {
+				vertical-align: sub;
+			}
+		}
+	}
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container {
+	padding-top: 0px !important;
+	padding-left: 0px !important;
+
+	.ng-placeholder {
+		top: unset !important;
+		padding-left: 20px;
+		padding-bottom: 0px !important;
+	}
+}
+
+.custom-card {
+	border-radius: 8px;
+	margin-bottom: 20px;
+	box-shadow: 0px 5px 9px gainsboro;
+}
+
+.custom-card-img-top {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.custom-card-body {
+	padding: 10px 15px;
+	text-align: center;
+	line-height: 1.2;
+	box-shadow: 0 2px 3px -2px #d8d8d8;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+.action-container {
+	/* background-color: #efefef; */
+	padding: 0px 15px;
+}
+
+.custom-card-head {
+	display: flex;
+
+	align-items: center;
+	border-radius: 8px 8px 0 0;
+}
+
+.custom-card-head h5 {
+	color: white;
+	text-shadow: 0px 1px 2px #6f6f6f;
+}
+
+.hashtags {
+	color: #909090;
+}
+
+.bg-light-blue {
+	background: #9fc1ff;
+}
+
+.bg-light-grey {
+	background: #acc0e9;
+}
+
+.bg-light-red {
+	background: #ff97a3;
+}
+
+.bg-light-skyblue {
+	background: #9ad9ff;
+}
+
+.bg-light-green {
+	background: #a4d0e7;
+}
+
+form label.required:after {
+	color: red;
+	content: " *";
+}
+
+.no-focus:focus {
+	outline: none !important;
+}
+
+.table-responsive {
+	overflow: unset !important;
+}
+.color-transparent {
+	color: transparent !important;
+}
+
+.rtl-input {
+  text-align:right;
+  unicode-bidi:bidi-override;
+  direction:rtl;
+}

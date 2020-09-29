@@ -1,0 +1,129 @@
+<div class="row page-header ">
+  <div class="col">
+    <h5>{{ cardTitle }}</h5>
+  </div>
+  <div class="col pd-0 last-update">
+    <div *ngIf="this.isEditMode" class="last-update-div">
+      <app-audit-info [value]="auditInfo"></app-audit-info>
+    </div>
+  </div>
+</div>
+<div class="row container-white-box spacing-20">
+  <div class="col-xl-12 col-md-12 px-0">
+    <app-loader [isLoading]="isLoading"></app-loader>
+    <div *ngIf="isValidCurrency; else elseBlock">
+      <form (ngSubmit)="saveCurrency(false)" [formGroup]="currencyForm" novalidate>
+        <div class="row">
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label required col-sm-5" for="code">{{ displayText.code }}</label>
+              <div class=" col-sm-7">
+                <input autocomplete="off" maxlength="100"
+                  [ngClass]="{ 'is-invalid': !currencyForm.controls.code.valid && isSubmit }"
+                  class="form-control form-control-sm " id="code" formControlName="code" name="code" type="text"
+                  [placeholder]="displayText.enterCode" required />
+                <label *ngIf="!currencyForm.controls.code.valid && isSubmit"
+                  class="invalid-feedback">{{ displayText.thisFieldIsRequired }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label col-sm-5" for="numberOfDigits">{{ displayText.numberOfDigits }}</label>
+              <div class="input-group col-sm-7">
+                <input autocomplete="off" class="form-control form-control-sm" maxlength="10" id="numberOfDigits"
+                  formControlName="numberOfDigits" name="numberOfDigits" type="text"
+                  [placeholder]="displayText.enterNumberOfDigits" numeric decimals="2" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label required col-sm-5" for="name">{{
+      									displayText.currencyName
+      								}}</label>
+              <div class=" col-sm-7">
+                <input noSpaces autocomplete="off" class="form-control form-control-sm " formControlName="name"
+                  maxlength="100" [ngClass]="{ 'is-invalid': !currencyForm.controls.name.valid && isSubmit }"
+                  type="text" [placeholder]="displayText.enterCurrencyName" required />
+                <label *ngIf="!currencyForm.controls.name.valid && isSubmit"
+                  class="invalid-feedback">{{ displayText.thisFieldIsRequired }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label col-md-5" for="slName">{{
+        									secondaryLanguage + ' ' + displayText.name
+        								}}</label>
+              <div class=" col-sm-7">
+                <input autocomplete="off" maxlength="100" class="form-control form-control-sm"
+                  [class.rtl-input]="isSecondaryLanguageDirectionRTL" id="slName" formControlName="slName" name="slName"
+                  type="text" [placeholder]="slNamePlaceHolder" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label col-sm-5" for="currencySymbol">{{ displayText.currencySymbol }}</label>
+              <div class="input-group col-sm-7">
+                <input autocomplete="off" class="form-control form-control-sm" maxlength="100" id="currencySymbol"
+                  formControlName="currencySymbol" name="currencySymbol" type="text"
+                  [placeholder]="displayText.enterCurrencySymbol" />
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label required col-sm-5"
+                for="symbolPosition">{{ displayText.symbolPosition }}</label>
+              <div class=" col-sm-7">
+                <ng-select [selectOnTab]="true"
+                  [ngClass]="{ 'is-invalid': !currencyForm.controls.symbolPosition.valid && isSubmit }"
+                  formControlName="symbolPosition" [items]="currencyTypes"
+                  [placeholder]="displayText.enterSymbolPosition" required>
+                </ng-select>
+                <label *ngIf="!currencyForm.controls.symbolPosition.valid && isSubmit"
+                  class="invalid-feedback">{{ displayText.thisFieldIsRequired }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label col-sm-5" for="exchangeRate">{{ displayText.exchangeRate }}</label>
+              <div class="input-group col-sm-7">
+                <input autocomplete="off" class="form-control form-control-sm" maxlength="10" id="exchangeRate"
+                  formControlName="exchangeRate" name="exchangeRate" type="text"
+                  [placeholder]="displayText.enterExchangeRate" numeric decimals="2" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-8 col-md-4 pl-sm-3 offset-md-2 text-center">
+            <button class="btn btn-sm btn-success " *ngIf="!this.isEditMode" (click)="saveCurrency(true)" type="button">
+              <i class="fa fa-file-medical"></i>{{ displayText.saveAndAddNew }}
+            </button>
+            <button class="btn btn-sm btn-success " type="submit">
+              <i class="fa fa-save"></i>{{ displayText.save }}
+            </button>
+            <button (click)="onDiscard($event)" class="btn btn-sm border btn-danger ">
+              <i class="fa fa-ban"></i>{{ displayText.discard }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <ng-template #elseBlock>
+      <div class="text-center">
+        <h2 class="text-muted">{{ errorMessage }}</h2>
+      </div>
+    </ng-template>
+  </div>
+</div>

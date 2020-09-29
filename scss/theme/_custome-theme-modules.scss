@@ -1,0 +1,85 @@
+.table-white {
+	.select-box-selected {
+		border-left: 3px solid #04a9f5 !important;
+		border-radius: 0px;
+	}
+
+	.select-box {
+		left: 9px;
+	}
+
+	.row-divbase:hover {
+		.select-col {
+			border-left: 3px solid #04a9f5 !important;
+      border-radius: 0px;
+		}
+	}
+}
+
+.wp-3 {
+	width: 3%;
+}
+
+//
+app-multi-check-select li>.ml-2.text-elipsis {
+	width: 204px;
+	font-size: 14px;
+	color: #636363;
+}
+
+// app-upsert-sales-order
+@media (min-width: 576px) {
+	app-upsert-sales-order .modal-dialog {
+		max-width: 90% !important;
+	}
+}
+@media (min-width: 576px){
+  app-upsert-transfer-requests .modal-dialog {
+      max-width: 70% !important;
+  }
+}
+@media (min-width: 576px){
+  app-upsert-transfer .modal-dialog {
+     max-width: 70% !important;
+  }}
+@media (min-width: 576px){
+  app-upsert-damage .modal-dialog {
+      max-width: 70% !important;
+  }
+}
+@media (min-width: 576px){
+  app-upsert-invoice .modal-dialog {
+      max-width: 90% !important;
+  }
+}
+@media (min-width: 576px){
+  app-upsert-price .modal-dialog {
+      max-width: 90% !important;
+  }
+}
+@media (min-width: 576px){
+  app-upsert-invoice-return .modal-dialog {
+      max-width: 90% !important;
+  }
+}
+@media (min-width: 576px){
+  app-upsert-receipt .modal-dialog {
+      max-width: 90% !important;
+  }
+}
+@media (min-width: 576px){
+  app-upsert-purchase-order .modal-dialog {
+      max-width: 90% !important;
+  }
+}
+@media (min-width: 576px){
+  app-upsert-receipt-return .modal-dialog {
+      max-width: 90% !important;
+  }
+}
+@media (min-width: 576px){
+  app-upsert-adjustment .modal-dialog {
+      max-width: 90% !important;
+  }
+}
+

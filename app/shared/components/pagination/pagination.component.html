@@ -1,0 +1,9 @@
+<div class="pagination">
+  <a class="cursor-pointer icon feather icon-chevron-left" (click)="handlePrevious()"></a>&nbsp;
+  <input type="number" class="form-control page-number-control" (input)="handleInputChange($event)"
+    [(ngModel)]="inputCurrentPage" min="1" [max]="totalPages" />&nbsp;<span>{{ '/' }}&nbsp;{{ totalPages }}</span>&nbsp;
+  <a class="cursor-pointer icon feather icon-chevron-right" (click)="handleNext()"></a>&nbsp;&nbsp;
+  <span>{{ perPageDisplayText }}</span>&nbsp;
+  <ng-select [selectOnTab]="true" class="pagination-dropdown-control" [items]="optionsList"
+    (change)="handlePageSizeChange()" [(ngModel)]="pageSize" [clearable]="false"></ng-select>
+</div>

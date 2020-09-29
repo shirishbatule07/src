@@ -1,0 +1,10 @@
+<div>
+  <div class="input-group">
+    <input #datePicker="ngbDatepicker" class="form-control" [class.is-invalid]="dateControl.invalid" [ngClass]="klass"
+      (input)="maskDate()" placeholder="{{ placeholder }}" [formControl]="dateControl" ngbDatepicker />
+    <div class="input-group-append">
+      <button class="btn btn-base fa fa-calendar" (click)="datePicker.toggle()" type="button"></button>
+    </div>
+  </div>
+  <label class="invalid-feedback d-block" *ngIf="dateControl.invalid">Invalid Date</label>
+</div>

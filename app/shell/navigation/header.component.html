@@ -1,0 +1,68 @@
+ <header class="fixed-top">
+  <nav role="navigation fixed-top" class="container">
+    <a routerLink="/dashboard" class="company-logo"><img src="../../../../assets/images/patheyamver-logo.png" /></a>
+    <a href="javascript:void(0);" class="ic menu" tabindex="1">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </a>
+    <a href="javascript:void(0);" class="ic close"></a>
+    <ul class="main-nav flex-1" id="main-nav">
+      <li class="top-level-link">
+        <a routerLink="/dashboard"><span>Home</span></a>
+      </li>
+     
+      
+      <li class="top-level-link">
+        <a class="mega-menu"><span>Master</span></a>
+        <div class="sub-menu-block three-col">
+          <div class="row flex-menu">
+            <div class="sub-menu-container col-md-4 col-lg-4 col-sm-4">
+              <!-- <h2 class="sub-menu-head">Masters</h2> -->
+              <ul class="sub-menu-lists">
+                <li><a routerLink="/master/company">Company</a></li>
+                <li><a routerLink="/master/product">Products</a></li>
+              </ul>
+            </div>
+            <!-- <div class="sub-menu-container col-md-4 col-lg-4 col-sm-4">
+              <h2 class="sub-menu-head">Transactions</h2>
+              <ul class="sub-menu-lists">
+               
+              </ul>
+            </div>
+            <div class="sub-menu-container col-md-4 col-lg-4 col-sm-4">
+              <h2 class="sub-menu-head">Reports</h2>
+              <ul class="sub-menu-lists">
+               
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </li>
+    </ul>
+    <ul class="main-nav profile-nav">
+      <li class="top-level-link">
+        <a class="mega-menu profile-avatar"><span><i _ngcontent-sxb-c13=""
+              class="icon feather icon-user"></i></span></a>
+        <div class="sub-menu-block">
+          <div class="row flex-menu">
+            <div class="sub-menu-container col-md-12 col-lg-12 col-sm-12">
+              <ul class="sub-menu-lists">
+                <li><a>Profile</a></li>
+                <li><a>Setting</a></li>
+                <li><a (click)="onLogout()">logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container form-controls-group-sm">
+  <router-outlet></router-outlet>
+</div> 
+
+
+

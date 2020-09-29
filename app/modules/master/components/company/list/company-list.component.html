@@ -1,0 +1,145 @@
+<div class="row page-header mr-b-0">
+  <div class="">
+    <h5 class="">{{ displayText.company }}</h5>
+  </div>
+  <div class="col pd-0">
+    <div class="col text-right pd-0">
+      <button class="btn btn-primary btn-sm mr-0" type="button" (click)="handleAddNew()">
+        <i class="fas fa-plus"></i>{{ displayText.addNew }}
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row"></div>
+<div class="row">
+  <div class="col-xl-12 col-md-12 px-0">
+    <div class="row align-items-center py-2">
+      <div class="col-sm-12 col-xs-12 col-md-4 p-1">
+        <app-loader [isLoading]="isLoading"></app-loader>
+        <div class="input-group ml-n4">
+          <span class="feather icon icon-search input-icon"></span>
+          <input #searchInput class="form-control input-md pl-5 search" id="search" name="search" type="text"
+            [value]="searchTerm" (input)="handleSearchInput(searchInput.value)" autocomplete="off"
+            placeholder="{{ displayText.enterTextToSearch }}" />
+        </div>
+      </div>
+      <div
+        class="col-sm-12 col-xs-12 col-md-8 row align-items-center justify-content-md-end justify-content-center pd-r-0">
+        <div *ngIf="companyList && companyList.length" ngbDropdown class="d-inline-block dropdown-menu-sm">
+          <button class="btn btn-white-primary btn-sm mt-1" id="dropdownBasic1"
+            ngbDropdownToggle>{{displayText.action}}</button>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem *ngIf="isListContainsSelectedItem" (click)="changeStatusOfSelectedIds(false)">
+              <i class="fa fa-archive mr-2" aria-hidden="true"></i>{{displayText.archive}}
+            </button>
+            <button ngbDropdownItem *ngIf="isListContainsSelectedItem" (click)="deleteSelectedCompanies()">
+              <i class="fa fa-trash mr-2"></i>{{displayText.delete}}
+            </button>
+            <button ngbDropdownItem>
+              <i class="fa fa-file-export mr-2"></i>{{displayText.export}}
+            </button>
+          </div>
+        </div>
+        <button *ngIf="companyList && companyList.length" type="button" (click)="toggleSelectAll()"
+          [class.btn-outline-danger]="isAllSelected" class="btn btn-outline-success btn-sm mt-1">
+          {{isAllSelected ? displayText.deSelectAll: displayText.selectAll}}
+          <i class="icon feather icon-check-circle mr-0"></i>
+        </button>
+        <app-pagination *ngIf="companyList && companyList.length" class="p-1" [totalRecords]="totalRecords"
+          [pageSize]="pageSize" (onPaginationChange)="paginationChange($event)">
+        </app-pagination>
+        <div *ngIf="!isMobileView">
+          <app-grid-list-view *ngIf="companyList && companyList.length" class="p-1 ml-sm-10"
+            (onChange)="onGridListViewChange($event)" [selectedView]="selectedView">
+          </app-grid-list-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row container-white-box">
+  <div class="col-xl-12 col-md-12 px-0">
+    <div class="table-responsive">
+      <app-no-records *ngIf="!companyList || !companyList.length"></app-no-records>
+      <div *ngIf="companyList &&companyList.length">
+        <div class="row bg-light-silver" *ngIf="selectedView == 'grid'">
+          <div class="col-lg-c-5 col-md-c-5 col-sm-c-5" *ngFor="let company of companyList">
+            <div class="card card-tiles card-tiles-border-c-blue" [ngClass]="{'select-box-selected':company.selected}">
+              <div class="card-tiles-header ">
+                <div class="full-width">
+                  <button class="btn text-left full-width btn-link text-elipsis no-padding"
+                    (click)="handleCompanyClick(company.id)">
+                    {{ company.companyName || '--' }}
+                  </button>
+                </div>
+                <button class="icon-btn feather icon-more-horizontal" (click)="handleCardAction(company)"
+                  [ngbPopover]="popOptions" [placement]="['left']"></button>
+              </div>
+              <div class="card-tiles-body ">
+                <div class="full-width">
+                  <span class="f-9 text-light-silver">{{ displayText.name }}:</span>
+                  <h5 class="f-15 card-tiles-title mr-b-0 text-capitalize">
+                    {{ company.companyName }}
+                  </h5>
+                  <span class="f-9 text-light-silver">{{ displayText.email }}:</span>
+                  <p class="card-tiles-text">{{ company.email || '--' }}</p>
+                  <span class="f-9 text-light-silver">{{ displayText.city }}:</span>
+                  <p class="card-tiles-text">{{ company.city || '--' }}</p>
+                </div>
+              </div>
+              <div class=" select-box cursor-pointer" (click)="company.selected = !company.selected">
+                <i class="icon feather icon-check"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-divbase table-white" *ngIf="selectedView == 'list'">
+          <div class="row-divbase header">
+            <div class="cell">{{ displayText.name }}</div>
+            <div class="cell">{{ displayText.contactNumber }}</div>
+            <div class="cell">{{  displayText.email }}</div>
+            <div class="cell">{{ displayText.companySymbol }}</div>
+            <div class="cell cell-action"></div>
+          </div>
+          <div class="row-divbase" *ngFor="let company of companyList; let key = index" [id]="key">
+            <div class="cell wp-3 select-col" [ngClass]="{'select-box-selected':company.selected}">
+              <div (click)="company.selected = !company.selected" class="select-box cursor-pointer">
+                <i class="icon feather icon-check"></i>
+              </div>
+            </div>
+            <div class="cell text-elipsis" data-title="localizedName">
+              <button class="btn text-left full-width btn-link text-elipsis no-padding"
+                (click)="handleCompanyClick(company.id)">
+                {{ company.companyName }}
+              </button>
+            </div>
+            <div class="cell text-elipsis" data-title="name">
+              {{ company.contactNumber }}
+            </div>
+            <div class="cell text-elipsis" data-title="localizedName">
+              {{ company.email }}
+            </div>
+            <div class="cell text-elipsis" data-title="localizedName">
+              {{ company.city }}
+            </div>
+
+            <div class="cell cell-action text-right" data-title="action">
+              <button class="icon-btn feather icon-more-horizontal" [ngbPopover]="popOptions" [id]="key"
+                [placement]="['left']" (click)="handleCardAction(company)"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #popOptions>
+  <ul class="list-unstyled mr-b-0">
+    <li>
+      <a class="dropdown-item px-3 py-2 cursor-pointer" (click)="handleArchive()">{{ displayText.archive }}</a>
+    </li>
+    <li>
+      <a class="dropdown-item px-3 py-2 cursor-pointer" (click)="handleDelete()">{{ displayText.delete }}</a>
+    </li>
+  </ul>
+</ng-template>

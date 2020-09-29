@@ -1,0 +1,6 @@
+<div class="grid-list-view">
+  <button #gridViewButton [ngClass]="{ active: selectedView == 'grid' }" class="icon icon-btn feather icon-grid"
+    accessKey="g" (click)="handleClick($event)"></button>
+  <button #listViewButton [ngClass]="{ active: selectedView == 'list' }" class="icon icon-btn feather icon-list"
+    accessKey="l" (click)="handleClick($event)"></button>
+</div>

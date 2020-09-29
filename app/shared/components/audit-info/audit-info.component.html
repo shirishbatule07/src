@@ -1,0 +1,9 @@
+<p>
+  <span class="last-update-title"><i class="fa fa-user"></i> {{ displayText.createdBy }} </span><span
+    class="text-capitalize">{{ createdByName }}</span><span> {{ displayText.on }} {{ createdDate }} </span>
+</p>
+<p *ngIf="this.showUpdatedBy">
+  <span class="last-update-title"><i class="fa fa-user-edit"></i>{{ displayText.lastUpdatedBy }}</span>
+  <span class="text-capitalize">{{ lastUpdatedByName }}</span>
+  <span> {{ displayText.on }} {{ lastUpdatedDate }}</span>
+</p>

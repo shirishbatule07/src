@@ -1,0 +1,197 @@
+<div class="row page-header ">
+  <div class="col">
+    <h5>{{ cardTitle }}</h5>
+  </div>
+ 
+</div>
+<div class="row container-white-box spacing-20">
+  <div class="col-xl-12 col-md-12 px-0">
+    <app-loader [isLoading]="isLoading"></app-loader>
+    <div *ngIf="isValidProduct; else elseBlock">
+      <form (ngSubmit)="saveProduct(false)" [formGroup]="productForm" novalidate>
+        <div class="row">
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label required col-sm-5" for="productName">{{ displayText.product+ ' '+ displayText.name  }}</label>
+              <div class=" col-sm-7">
+                <input autocomplete="off" maxlength="100"
+                  [ngClass]="{ 'is-invalid': !productForm.controls.productName.valid && isSubmit }"
+                  class="form-control form-control-sm " id="productName" formControlName="productName" name="productName" type="text"
+                  [placeholder]="displayText.product+ ' '+ displayText.name " required />
+                <label *ngIf="!productForm.controls.productName.valid && isSubmit"
+                  class="invalid-feedback">{{ displayText.thisFieldIsRequired }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label required col-sm-4" for="price">{{ displayText.price}}</label>
+              <div class="input-group col-sm-8">
+                <input autocomplete="off" class="form-control form-control-sm" maxlength="10" id="price"
+                  formControlName="price" name="price" type="text"
+                  [ngClass]="{ 'is-invalid': !productForm.controls.price.valid && isSubmit }"
+                  [placeholder]="displayText.price" numeric required />
+                  <label *ngIf="!productForm.controls.price.valid && isSubmit"
+                  class="invalid-feedback">{{ displayText.thisFieldIsRequired }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label required col-sm-5" for="technicalName">{{ displayText.technicalName  }}</label>
+              <div class=" col-sm-7">
+                <input autocomplete="off" maxlength="100"
+                  [ngClass]="{ 'is-invalid': !productForm.controls.technicalName.valid && isSubmit }"
+                  class="form-control form-control-sm " id="technicalName" formControlName="technicalName" name="technicalName" type="text"
+                  [placeholder]="displayText.technicalName" required />
+                <label *ngIf="!productForm.controls.technicalName.valid && isSubmit"
+                  class="invalid-feedback">{{ displayText.thisFieldIsRequired }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label col-sm-4" for="soldBy">{{ displayText.soldBy}}</label>
+              <div class="input-group col-sm-8">
+                <input autocomplete="off" class="form-control form-control-sm" maxlength="10" id="soldBy"
+                  formControlName="soldBy" name="soldBy" type="text"
+                  [placeholder]="displayText.soldBy"   />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label required col-sm-5" for="searchKeywords">{{ displayText.searchKeywords  }}</label>
+              <div class=" col-sm-7">
+                <input autocomplete="off" maxlength="100"
+                  [ngClass]="{ 'is-invalid': !productForm.controls.searchKeywords.valid && isSubmit }"
+                  class="form-control form-control-sm " id="searchKeywords" formControlName="searchKeywords" name="searchKeywords" type="text"
+                  [placeholder]="displayText.searchKeywords" required />
+                <label *ngIf="!productForm.controls.searchKeywords.valid && isSubmit"
+                  class="invalid-feedback">{{ displayText.thisFieldIsRequired }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label  col-sm-5" for="primeImage">{{ displayText.primeImage  }}</label>
+              <div class="profile-img-container">
+                <!-- <div class="profile-img-controls">
+                  <span (click)="img.click()" class="h3 p-2 feather icon icon-edit-2 float-left"></span>
+                  <span (click)="clearImg()" class="h3 p-2 feather icon icon-trash-2 float-right"></span>
+                </div> -->
+                <!-- <div class="upload-image">
+                  <img class="profile-img" [src]="icon || 'assets/images/no-image-available.png'" alt="dashboard-user" />
+                </div> -->
+                <input #img type="file" accept=".png, .jpg, .jpeg" (input)="onFileChange($event.target.files)"  />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <!-- <div class="col-xl-12 col-md-12 "> -->
+            <div class="col-sm-2">
+              <label class="form-control-label offset-md-1 form-group" for="productDescription">{{ displayText.productDescription  }}</label>
+            </div>
+              <div class=" col-sm-10">
+                <textarea formControlName="productDescription" class="form-control form-group " style="margin-left: 5.5%; width: 93%;" placeholder="{{ displayText.productDescription }} ..." rows="3"></textarea>
+                
+            
+            <!-- </div> -->
+          </div>
+         
+        </div>
+        <div class="row"> 
+
+        </div>
+        <div class="row">
+          <!-- <div class="col-xl-12 col-md-12 "> -->
+            <div class="col-sm-2">
+              <label class="form-control-label offset-md-1 form-group" for="productSpecifications">{{ displayText.productSpecifications  }}</label>
+            </div>
+              <div class=" col-sm-10">
+                <textarea formControlName="productSpecifications" class="form-control form-group " style="margin-left: 5.5%; width: 93%;" placeholder="{{ displayText.productSpecifications }} ..." rows="3"></textarea>
+                
+            
+            <!-- </div> -->
+          </div>
+         
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label required col-sm-5" for="yearOfLaunch">{{ displayText.yearOfLaunch  }}</label>
+              <div class=" col-sm-7">
+                <input autocomplete="off" maxlength="100"
+                  [ngClass]="{ 'is-invalid': !productForm.controls.yearOfLaunch.valid && isSubmit }"
+                  class="form-control form-control-sm " id="yearOfLaunch" formControlName="yearOfLaunch" name="yearOfLaunch" type="text"
+                  [placeholder]="displayText.yearOfEstablishment " required />
+                <label *ngIf="!productForm.controls.yearOfLaunch.valid && isSubmit"
+                  class="invalid-feedback">{{ displayText.thisFieldIsRequired }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label col-sm-4" for="avgCustomerReview">{{ displayText.avgCustomerReview}}</label>
+              <div class="input-group col-sm-8">
+                <input autocomplete="off" class="form-control form-control-sm" maxlength="10" id="avgCustomerReview"
+                  formControlName="avgCustomerReview" name="avgCustomerReview" type="text"
+                  [placeholder]="displayText.avgCustomerReview"   />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label  col-sm-5" for="productURL">{{ displayText.productURL  }}</label>
+              <div class=" col-sm-7">
+                <input autocomplete="off" maxlength="100"
+                  [ngClass]="{ 'is-invalid': !productForm.controls.productURL.valid && isSubmit }"
+                  class="form-control form-control-sm " id="productURL" formControlName="productURL" name="productURL" type="text"
+                  [placeholder]="displayText.productURL"  />
+            
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-6 pl-sm-3">
+            <div class="form-group w-100 row">
+              <label class="form-control-label  col-sm-4" for="reviewCount">{{ displayText.reviewCount  }}</label>
+              <div class=" col-sm-8">
+                <input autocomplete="off" maxlength="100"
+                  [ngClass]="{ 'is-invalid': !productForm.controls.reviewCount.valid && isSubmit }"
+                  class="form-control form-control-sm " id="reviewCount" formControlName="reviewCount" name="reviewCount" type="text"
+                  [placeholder]="displayText.reviewCount"  />
+              
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-8 col-md-4 pl-sm-3 offset-md-2 text-center">
+            <button class="btn btn-sm btn-success " *ngIf="!this.isEditMode" (click)="saveProduct(true)" type="button">
+              <i class="fa fa-file-medical"></i>{{ displayText.saveAndAddNew }}
+            </button>
+            <button class="btn btn-sm btn-success " type="submit">
+              <i class="fa fa-save"></i>{{ displayText.save }}
+            </button>
+            <button (click)="onDiscard($event)" class="btn btn-sm border btn-danger ">
+              <i class="fa fa-ban"></i>{{ displayText.discard }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <ng-template #elseBlock>
+      <div class="text-center">
+        <h2 class="text-muted">{{ errorMessage }}</h2>
+      </div>
+    </ng-template>
+  </div>
+</div>

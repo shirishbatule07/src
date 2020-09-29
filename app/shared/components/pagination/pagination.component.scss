@@ -1,0 +1,27 @@
+.pagination {
+	font-size: 14px;
+	font-weight: 400;
+	align-items: center;
+	line-height: 1.5;
+	.page-number-control {
+		display: inline-block;
+		padding: 6px 5px;
+		background: #ffffff;
+		color: #495057;
+		border: 1px solid #ced4da;
+		border-radius: 0.25rem;
+		width: 3em;
+	}
+	input[type="number"] ::-webkit-outer-spin-button,
+	::-webkit-inner-spin-button {
+		-webkit-appearance: none !important;
+		margin: 0;
+	}
+	-moz-appearance: textfield !important;
+	.pagination-dropdown-control {
+		display: inline-block;
+	}
+	.icon {
+		font-size: 28px;
+	}
+}
